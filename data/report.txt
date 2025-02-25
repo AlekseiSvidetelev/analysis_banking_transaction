@@ -1,0 +1,19 @@
+sum_arg: time execution: 0.000001. Result: 3
+sum_arg: time execution: 0.000001. Result: 9
+sum_arg: time execution: 0.000001. Result: 15
+sum_arg: time execution: 0.000002. Result: 3
+sum_arg: time execution: 0.000001. Result: 9
+sum_arg: time execution: 0.000001. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == "sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}\n"
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x000001C2E98923C0>}
+sum_arg: error - 'x' РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂР°РІРµРЅ 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == "sum_arg: error - 'x' РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂР°РІРµРЅ 'y'. Input: (1, 1), {}\n"
+  
+  - sum_arg: error - 'x' РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂР°РІРµРЅ 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x000002484EE123C0>}
+sum_arg: time execution: 0.000001. Result: 3
+sum_arg: time execution: 0.000001. Result: 9
+sum_arg: time execution: 0.000001. Result: 15

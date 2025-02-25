@@ -9,7 +9,7 @@ from datetime import datetime
 from src.utils import load_user_setting
 from src.utils import filtered_curses, format_date
 import pandas as pd
-from src.main import transactions
+
 from src.utils import sorted_transactions_as_date
 
 
