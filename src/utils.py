@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 from config import DATA_DIR
 import json
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 def load_user_setting():
@@ -28,102 +28,102 @@ def sorted_transactions_as_date(transactions, start_date, end_date):
     return filtered_df
 
 
-def format_date(date):
-    """ Преобразует значение даты в формат """ #'2021-12-30 22:22:03'
-    date_str = datetime.strptime(date, "%Y.%m.%d %H:%M:%S")
-    new_format = date_str.strftime('%d.%m.%Y')
-    return new_format
+# def format_date(date):
+#     """ Преобразует значение даты в формат """
+#     date_str = datetime.strptime(date, "%d.%m.%Y %H:%M:%S")
+#     new_format = date_str.strftime("%Y.%m.%d %H:%M:%S")
+#     return new_format
 
 
 
 
-def filtered_curses(curses_dict):
-    """ Функция для фильтрации валюты из пользовательских настроек """
-    try:
-        user_setting = load_user_setting()
-        user_currencies = user_setting.get("user_currencies", [])
-        filtered_rates = {
-            "start_date": curses_dict["start_date"],
-            "end_date": curses_dict["end_date"],
-            "base": curses_dict["base"]
-        }
-        for date, rates in curses_dict["rates"].items():
-            filtered_rates[date] = {currency: rates[currency] for currency in user_currencies if currency in rates}
-        return filtered_rates
-    except Exception as e:
-        print(f"Ошибка {Exception}: {e}")
-
-
-def filtered_stock_prices(prices):
-    """ Функция для фильтрации акций из настроек пользователя """
-    pass
-
-
-def get_transactions_xlsx(path_file):
-    """ Функция для получения данных из файла .xlsx """
-    try:
-        df = pd.read_excel(path_file)
-        list_operations = df.to_dict("records")
-        return list_operations
-    except Exception as e:
-        print(f"Ошибка: {Exception} - {e}")
-
-
-def filtered_operations_by_date(operations_list, date, range_date="M"):
-    """ Функция для фильтрации транзакций за указанный диапазон времени """
-    try:
-        end_date = datetime.strptime(date, "%d.%m.%Y")
-        if range_date == "M":
-            start_date = end_date - relativedelta(months=1)
-        elif range_date == "W":
-            start_date = end_date - relativedelta(weeks=1)
-        elif range_date == "Y":
-            start_date = end_date - relativedelta(years=1)
-        elif range_date == "ALL":
-            start_date = end_date - relativedelta(years=10)
-        filtered_operations = [operation for operation in operations_list if start_date <= (datetime.strptime(operation["Дата операции"], "%d.%m.%Y %H:%M:%S")) <= end_date]
-        return filtered_operations
-    except Exception as e:
-        print(f"Ошибка: {Exception} - {e}")
-
-
-def top_category(operations_list):
-    """ Функция 7 основных категорий по тратам """
-    category_list = {}
-    for operation in operations_list:
-        if not pd.isna(operation['MCC']):
-            category = operation["Категория"]
-            amount = abs(operation["Сумма операции"])
-            if category in category_list:
-                category_list[category] += int(amount)
-            else:
-                category_list[category] = int(amount)
-    sorted_categories = sorted(category_list.items(), key=lambda x: x[1], reverse=True)
-    top_7_category = sorted_categories[:7]
-    result = dict(top_7_category)
-    new_list = []
-    for key, value in result.items():
-        new_list.append(
-            {"category": key,
-             "amount": value}
-            )
-    return new_list
-
-
-def card_amount_sum(operations_list):
-    """ Функция возвращает траты по картам """
-    card_amount = {}
-    for operation in operations_list:
-        if not pd.isna(operation['Номер карты']):
-            card_number = operation['Номер карты']
-            amount = abs(operation["Сумма платежа"])
-            if card_number in card_amount:
-                card_amount[card_number] += int(amount)
-            else:
-                card_amount[card_number] = int(amount)
-
-
-    print(card_amount)
+# def filtered_curses(curses_dict):
+#     """ Функция для фильтрации валюты из пользовательских настроек """
+#     try:
+#         user_setting = load_user_setting()
+#         user_currencies = user_setting.get("user_currencies", [])
+#         filtered_rates = {
+#             "start_date": curses_dict["start_date"],
+#             "end_date": curses_dict["end_date"],
+#             "base": curses_dict["base"]
+#         }
+#         for date, rates in curses_dict["rates"].items():
+#             filtered_rates[date] = {currency: rates[currency] for currency in user_currencies if currency in rates}
+#         return filtered_rates
+#     except Exception as e:
+#         print(f"Ошибка {Exception}: {e}")
+#
+#
+# def filtered_stock_prices(prices):
+#     """ Функция для фильтрации акций из настроек пользователя """
+#     pass
+#
+#
+# def get_transactions_xlsx(path_file):
+#     """ Функция для получения данных из файла .xlsx """
+#     try:
+#         df = pd.read_excel(path_file)
+#         list_operations = df.to_dict("records")
+#         return list_operations
+#     except Exception as e:
+#         print(f"Ошибка: {Exception} - {e}")
+#
+#
+# def filtered_operations_by_date(operations_list, date, range_date="M"):
+#     """ Функция для фильтрации транзакций за указанный диапазон времени """
+#     try:
+#         end_date = datetime.strptime(date, "%d.%m.%Y")
+#         if range_date == "M":
+#             start_date = end_date - relativedelta(months=1)
+#         elif range_date == "W":
+#             start_date = end_date - relativedelta(weeks=1)
+#         elif range_date == "Y":
+#             start_date = end_date - relativedelta(years=1)
+#         elif range_date == "ALL":
+#             start_date = end_date - relativedelta(years=10)
+#         filtered_operations = [operation for operation in operations_list if start_date <= (datetime.strptime(operation["Дата операции"], "%d.%m.%Y %H:%M:%S")) <= end_date]
+#         return filtered_operations
+#     except Exception as e:
+#         print(f"Ошибка: {Exception} - {e}")
+#
+#
+# def top_category(operations_list):
+#     """ Функция 7 основных категорий по тратам """
+#     category_list = {}
+#     for operation in operations_list:
+#         if not pd.isna(operation['MCC']):
+#             category = operation["Категория"]
+#             amount = abs(operation["Сумма операции"])
+#             if category in category_list:
+#                 category_list[category] += int(amount)
+#             else:
+#                 category_list[category] = int(amount)
+#     sorted_categories = sorted(category_list.items(), key=lambda x: x[1], reverse=True)
+#     top_7_category = sorted_categories[:7]
+#     result = dict(top_7_category)
+#     new_list = []
+#     for key, value in result.items():
+#         new_list.append(
+#             {"category": key,
+#              "amount": value}
+#             )
+#     return new_list
+#
+#
+# def card_amount_sum(operations_list):
+#     """ Функция возвращает траты по картам """
+#     card_amount = {}
+#     for operation in operations_list:
+#         if not pd.isna(operation['Номер карты']):
+#             card_number = operation['Номер карты']
+#             amount = abs(operation["Сумма платежа"])
+#             if card_number in card_amount:
+#                 card_amount[card_number] += int(amount)
+#             else:
+#                 card_amount[card_number] = int(amount)
+#
+#
+#     print(card_amount)
 
 
 
@@ -132,16 +132,17 @@ def card_amount_sum(operations_list):
 if __name__ == "__main__":
     # print(load_user_setting())
     # print(filtered_curses())
-    path_file_ = os.path.join(DATA_DIR, "operations.xlsx")
+    # path_file_ = os.path.join(DATA_DIR, "operations.xlsx")
     # print(get_transactions_xlsx(path_file_))
+    print(format_date("31.12.2021 16:39:04"))
 
     # filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "M")
-    print(filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "W"))
+    # print(filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "W"))
     # filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "Y")
     # filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "ALL")
-    print(top_category(filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "M")))
+    # print(top_category(filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "M")))
 
-    card_amount_sum(filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "M"))
+    # card_amount_sum(filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "M"))
 
 
     otvet = {
