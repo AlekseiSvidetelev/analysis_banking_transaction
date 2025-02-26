@@ -11,7 +11,7 @@ from datetime import datetime
 
 
 def load_user_setting():
-    """ Загружает пользовательские настройки из файла data.user_settings.json """
+    """Загружает пользовательские настройки из файла data.user_settings.json"""
     try:
         with open(os.path.join(DATA_DIR, "user_settings.json"), "r") as file:
             return json.load(file)
@@ -21,10 +21,10 @@ def load_user_setting():
 
 
 def sorted_transactions_as_date(transactions, start_date, end_date):
-    """ Функция для фильтрации транзакций за указанный период """
+    """Функция для фильтрации транзакций за указанный период"""
     df = pd.DataFrame(transactions)
-    df["Дата операции"] = pd.to_datetime(df['Дата операции'], format='%d.%m.%Y %H:%M:%S')
-    filtered_df = df.loc[(df['Дата операции'] >= start_date) & (df['Дата операции'] <= end_date)]
+    df["Дата операции"] = pd.to_datetime(df["Дата операции"], format="%d.%m.%Y %H:%M:%S")
+    filtered_df = df.loc[(df["Дата операции"] >= start_date) & (df["Дата операции"] <= end_date)]
     return filtered_df
 
 
@@ -33,8 +33,6 @@ def sorted_transactions_as_date(transactions, start_date, end_date):
 #     date_str = datetime.strptime(date, "%d.%m.%Y %H:%M:%S")
 #     new_format = date_str.strftime("%Y.%m.%d %H:%M:%S")
 #     return new_format
-
-
 
 
 # def filtered_curses(curses_dict):
@@ -126,9 +124,6 @@ def sorted_transactions_as_date(transactions, start_date, end_date):
 #     print(card_amount)
 
 
-
-
-
 if __name__ == "__main__":
     # print(load_user_setting())
     # print(filtered_curses())
@@ -143,7 +138,6 @@ if __name__ == "__main__":
     # print(top_category(filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "M")))
 
     # card_amount_sum(filtered_operations_by_date(get_transactions_xlsx(path_file_), "31.12.2021", "M"))
-
 
     otvet = {
         "success": True,

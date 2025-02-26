@@ -4,12 +4,15 @@ import pandas as pd
 import json
 
 from config import DATA_DIR
+from src.decorators import get_record_to_file
+
 from src.views import greetings
 from src.views import get_card_spending
 from src.views import top_transactions_as_period
 from src.views import get_users_curses
 from src.views import get_stock_prices
 from src.services import get_sorted_transaction
+from src.reports import spending_by_category
 
 path_file = os.path.join(DATA_DIR, "operations.xlsx")
 transactions = pd.read_excel(path_file)
@@ -42,21 +45,22 @@ def get_home_page(transaction, date):
         print(f"Ошибка {Exception}: {e}")
 
 
-
 def get_transactions_by_description(transactions, search_str):
     sorted_transaction = get_sorted_transaction(transactions, search_str)
     return json.dumps(sorted_transaction, indent=4, ensure_ascii=False)
 
 
-def ger_report():
-    pass
-
-
+@get_record_to_file("report.txt")
+def get_filtered_transaction(transactions, category, date):
+    result = spending_by_category(transactions, category, date)
+    result_to_dict = result.to_dict(orient="records")
+    return json.dumps(result_to_dict, indent=4, ensure_ascii=False)
 
 
 if __name__ == "__main__":
     # print(transactions)
     # print(transactions_as_list)
     # get_home_page(transactions, "31.12.2020 12:00:00")
-    print(get_transactions_by_description(transactions_as_list, "фастфуд"))
-    print(type(get_transactions_by_description(transactions_as_list, "фастфуд")))
+    # print(get_transactions_by_description(transactions_as_list, "фастфуд"))
+    # print(type(get_transactions_by_description(transactions_as_list, "фастфуд")))
+    print(get_filtered_transaction(transactions, "каршеринг", "2021-10-12 00:00:00"))

@@ -21,7 +21,7 @@ API_KEY_stock = os.environ.get("API_KEY_stock")
 
 
 def greetings():
-    """ Функция для приветствия в зависимости от времени запроса """
+    """Функция для приветствия в зависимости от времени запроса"""
     hour_now = datetime.now()
     hour = hour_now.hour
     if 4 <= hour < 12:
@@ -35,30 +35,30 @@ def greetings():
 
 
 def get_card_spending(transactions, date_str):
-    """ Получение информации трат по картам """
+    """Получение информации трат по картам"""
     end_date = datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S")
     start_date = end_date.replace(day=1, hour=0, minute=0, second=0)
     df = pd.DataFrame(transactions)
     sort_transactions = sorted_transactions_as_date(df, start_date, end_date)
-    filtered_df = sort_transactions[~(sort_transactions['Сумма платежа'] >= 0)]
+    filtered_df = sort_transactions[~(sort_transactions["Сумма платежа"] >= 0)]
     grop_by_card = filtered_df.groupby("Номер карты")
-    agg_info = grop_by_card.agg({'Сумма платежа': 'sum',
-                                'Кэшбэк': 'sum'})
+    agg_info = grop_by_card.agg({"Сумма платежа": "sum", "Кэшбэк": "sum"})
     result = agg_info.reset_index()
     to_new_dict = result.to_dict(orient="records")
     result_list = []
     for dict in to_new_dict:
-        result_list.append({
-            "last_digits": dict['Номер карты'],
-            "total_spent": round(abs(dict['Сумма платежа']), 2),
-            "cashback": math.floor(abs(dict['Сумма платежа']) / 100),
+        result_list.append(
+            {
+                "last_digits": dict["Номер карты"],
+                "total_spent": round(abs(dict["Сумма платежа"]), 2),
+                "cashback": math.floor(abs(dict["Сумма платежа"]) / 100),
             }
         )
     return result_list
 
 
 def top_transactions_as_period(transactions, date_str):
-    """ Функция возвращает топ 5 транзакций по сумме платежа """
+    """Функция возвращает топ 5 транзакций по сумме платежа"""
     end_date = datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S")
     start_date = end_date.replace(day=1, hour=0, minute=0, second=0)
     df = pd.DataFrame(transactions)
@@ -70,10 +70,10 @@ def top_transactions_as_period(transactions, date_str):
     for category in to_new_dict:
         result_list.append(
             {
-            "date": category['Дата операции'].strftime('%d.%m.%Y'),
-            "amount": round(abs(category['Сумма платежа']), 2),
-            "category": category['Категория'],
-            "description": category['Описание']
+                "date": category["Дата операции"].strftime("%d.%m.%Y"),
+                "amount": round(abs(category["Сумма платежа"]), 2),
+                "category": category["Категория"],
+                "description": category["Описание"],
             }
         )
     return result_list
@@ -97,14 +97,11 @@ def get_users_curses():
         currency_in_rubles = 1 / currency * rub_curs
         filtered_list.append(
             {
-            "currency": stocks,
-            "rate": round(currency_in_rubles, 2),
+                "currency": stocks,
+                "rate": round(currency_in_rubles, 2),
             }
         )
     return filtered_list
-
-
-
 
 
 def get_stock_prices():
@@ -117,25 +114,14 @@ def get_stock_prices():
     stock_list = []
     for stock in user_stocks:
         ticker = stock
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f"Token {API_KEY_stock}"
-        }
+        headers = {"Content-Type": "application/json", "Authorization": f"Token {API_KEY_stock}"}
         requestResponse = requests.get(f"https://api.tiingo.com/tiingo/daily/{ticker}/prices", headers=headers)
-        stock_list.append({stock: {k: v for k, v in item.items() if k == 'open'} for item in requestResponse.json()})
+        stock_list.append({stock: {k: v for k, v in item.items() if k == "open"} for item in requestResponse.json()})
     result = []
     for stock in stock_list:
         for key, value in stock.items():
-            result.append({
-            "stock": key,
-            "price": value["open"]
-        })
+            result.append({"stock": key, "price": value["open"]})
     return result
-
-
-
-
-
 
     # date = datetime.now()
     # user_setting = load_user_setting()
@@ -1182,4 +1168,3 @@ if __name__ == "__main__":
                         '5. volume': '70988067'}}}
     None
     """
-

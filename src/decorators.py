@@ -4,8 +4,10 @@ from functools import wraps
 
 from config import DATA_DIR
 
+
 def get_record_to_file(file_name: str = "report.txt"):
-    """ Декоратор, который записывает результаты в файл """
+    """Декоратор, который записывает результаты в файл"""
+
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -21,5 +23,7 @@ def get_record_to_file(file_name: str = "report.txt"):
                 log_message = f"{func.__name__}: error - {str(e)}. Input: {args}, {kwargs}"
                 with open(os.path.join(DATA_DIR, file_name), "a", encoding="utf-8") as file:
                     file.write(str(log_message) + "\n")
+
         return wrapper
+
     return decorator
