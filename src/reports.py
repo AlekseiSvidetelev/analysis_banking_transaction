@@ -16,7 +16,6 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-# @get_record_to_file("report.txt")
 def spending_by_category(transactions: pd.DataFrame, category: str, date: Optional[str] = None) -> pd.DataFrame:
     """Фильтрация транзакций по заданной категории и за период 3 месяца"""
     logger.info("Начало работы")
@@ -47,6 +46,6 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: Option
         return pd.DataFrame()
 
 
-if __name__ == "__main__":
-    spending_by_category(transactions, "супермаркты", None)
-    spending_by_category(transactions, "супермаркеты", "2020-12-30 12:12:12")
+# if __name__ == "__main__":
+# spending_by_category(transactions, "супермаркты", None)
+# spending_by_category(transactions, "супермаркеты", "2020-12-30 12:12:12")

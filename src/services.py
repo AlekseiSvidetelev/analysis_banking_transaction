@@ -1,14 +1,31 @@
-def get_sorted_transaction(transactions, user_search):
+import logging
+import os
+from typing import Any
+
+from config import LOGS_DIR
+
+logger = logging.getLogger("services")
+logger.setLevel(logging.DEBUG)
+file_handler = logging.FileHandler(os.path.join(LOGS_DIR, "services.log"), mode="w", encoding="utf-8")
+file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logger.setLevel(logging.INFO)
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
+
+def get_sorted_transaction(transactions: list[dict[str, Any]], user_search: str) -> list[dict[str, Any]]:
     """Функция для поиска транзакций по описанию или категории"""
-    filtered_transaction = [
-        transaction
-        for transaction in transactions
-        if user_search.lower() in str(transaction.get("Категория", "")).lower()
-        or user_search.lower() in str(transaction.get("Описание", "")).lower()
-    ]
-    return filtered_transaction
-
-
-# if __name__ == "__main__":
-# get_sorted_transaction(transactions_as_list, "фастфуд")
-# print(transactions_as_list)
+    logger.info("Начало работы")
+    try:
+        filtered_transaction = [
+            transaction
+            for transaction in transactions
+            if user_search.lower() in str(transaction.get("Категория", "")).lower()
+            or user_search.lower() in str(transaction.get("Описание", "")).lower()
+        ]
+        logger.info("Функция успешно выполнила поиск.")
+        return filtered_transaction
+    except Exception as e:
+        logger.error(f"Ошибка в функции  - {Exception}: {e}.")
+        print(f"Ошибка в функции  - {Exception}: {e}.")
+        return []

@@ -1,16 +1,17 @@
 import os
 import time
 from functools import wraps
+from typing import Any, Callable
 
 from config import DATA_DIR
 
 
-def get_record_to_file(file_name: str = "report.txt"):
+def get_record_to_file(file_name: str = "report.txt") -> Callable[[Callable], Callable]:
     """Декоратор, который записывает результаты в файл"""
 
-    def decorator(func):
+    def decorator(func: Callable) -> Callable:
         @wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
             start_time = time.time()
             try:
                 result = func(*args, **kwargs)
