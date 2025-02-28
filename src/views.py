@@ -2,6 +2,7 @@ import logging
 import math
 import os
 from datetime import datetime
+from typing import Any
 
 import pandas as pd
 import requests
@@ -43,13 +44,12 @@ def greetings():
             greeting = "Доброй ночи"
         logger.info(f"Функция '{greetings.__name__}' вернула '{greeting}'")
         return greeting
-
     except Exception as e:
         logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
         print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
 
 
-def get_card_spending(transactions, date_str):
+def get_card_spending(transactions: list[dict[str, Any]], date_str: str) -> list[dict[str, Any]]:
     """Получение информации трат по картам"""
     logger.info(f"Начало работы '{greetings.__name__}'")
     try:
@@ -77,6 +77,7 @@ def get_card_spending(transactions, date_str):
     except Exception as e:
         logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
         print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
+        return []
 
 
 def top_transactions_as_period(transactions, date_str):
@@ -105,6 +106,7 @@ def top_transactions_as_period(transactions, date_str):
     except Exception as e:
         logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
         print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
+        return []
 
 
 def get_users_curses():
@@ -139,6 +141,7 @@ def get_users_curses():
     except Exception as e:
         logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
         print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
+        return []
 
 
 def get_stock_prices():
@@ -154,6 +157,7 @@ def get_stock_prices():
             ticker = stock
             headers = {"Content-Type": "application/json", "Authorization": f"Token {API_KEY_stock}"}
             requestResponse = requests.get(f"https://api.tiingo.com/tiingo/daily/{ticker}/prices", headers=headers)
+            print(requestResponse.json())
             logger.info(f"Код ответа: {requestResponse}")
             stock_list.append(
                 {stock: {k: v for k, v in item.items() if k == "open"} for item in requestResponse.json()}
@@ -167,12 +171,13 @@ def get_stock_prices():
     except Exception as e:
         logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
         print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
+        return []
 
 
 if __name__ == "__main__":
-    print(load_user_setting())
-    get_users_curses()
+    # print(load_user_setting())
+    # print(get_users_curses())
     print(get_stock_prices())
-    print(greetings())
+    # print(greetings())
     # get_card_spending(transactions, "31.12.2021 16:44:00")
     # top_transactions_as_period(transactions,"31.12.2021 16:44:00")

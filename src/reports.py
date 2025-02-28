@@ -44,8 +44,3 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: Option
     except Exception as e:
         logger.error(f"Ошибка в функции spending_by_category: {e}")
         return pd.DataFrame()
-
-
-# if __name__ == "__main__":
-# spending_by_category(transactions, "супермаркты", None)
-# spending_by_category(transactions, "супермаркеты", "2020-12-30 12:12:12")

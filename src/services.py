@@ -23,7 +23,7 @@ def get_sorted_transaction(transactions: list[dict[str, Any]], user_search: str)
             if user_search.lower() in str(transaction.get("Категория", "")).lower()
             or user_search.lower() in str(transaction.get("Описание", "")).lower()
         ]
-        logger.info("Функция успешно выполнила поиск.")
+        logger.info(f"Функция успешно выполнила поиск. Найдено {len(filtered_transaction)} транзакций")
         return filtered_transaction
     except Exception as e:
         logger.error(f"Ошибка в функции  - {Exception}: {e}.")
