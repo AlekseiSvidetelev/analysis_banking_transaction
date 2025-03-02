@@ -3,6 +3,7 @@ from contextlib import nullcontext as does_not_raise
 
 from src.decorators import get_record_to_file
 
+
 @get_record_to_file("report.txt")
 def sum_arg(x: float, y: float) -> float:
     """Функция для тестирования декоратора"""
@@ -19,7 +20,7 @@ def sum_arg(x: float, y: float) -> float:
         (7, 8, 15, does_not_raise()),
     ],
 )
-def test_my_function(x, y, expected, expectation):
+def test_my_function(x: int, y: int, expected: int, expectation):
     """Функция для тестирования декоратора если название файла не задано и данные выводятся в консоль"""
     with expectation:
         assert sum_arg(x, y) == expected
@@ -34,6 +35,3 @@ def test_exception(capsys):
     out, err = capsys.readouterr()
     assert out == "sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}\n"
     assert err == "sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}\n"
-
-
-

@@ -1,12 +1,20 @@
 import json
 import os
+from datetime import datetime
+from typing import Any
 
 import pandas as pd
+from dotenv import load_dotenv
+
 
 from config import DATA_DIR
 
+load_dotenv()
 
-def load_user_setting():
+API_KEY_stock = os.environ.get("API_KEY_stock")
+
+
+def load_user_setting() -> Any:
     """Загружает пользовательские настройки из файла data.user_settings.json"""
     try:
         with open(os.path.join(DATA_DIR, "user_settings.json"), "r") as file:
@@ -16,7 +24,7 @@ def load_user_setting():
         return {"user_currencies": [], "user_stocks": []}
 
 
-def sorted_transactions_as_date(transactions, start_date, end_date):
+def sorted_transactions_as_date(transactions: pd.DataFrame, start_date: datetime, end_date: datetime) -> pd.DataFrame:
     """Функция для фильтрации транзакций за указанный период"""
     df = pd.DataFrame(transactions)
     df["Дата операции"] = pd.to_datetime(df["Дата операции"], format="%d.%m.%Y %H:%M:%S")

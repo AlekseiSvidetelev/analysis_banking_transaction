@@ -2,11 +2,12 @@ import logging
 import math
 import os
 from datetime import datetime
-from typing import Any
+from typing import Any, Dict, List
 
 import pandas as pd
 import requests
 from dotenv import load_dotenv
+from pandas import DataFrame
 
 from config import LOGS_DIR
 from src.utils import load_user_setting, sorted_transactions_as_date
@@ -21,15 +22,15 @@ API_KEY_stock = os.environ.get("API_KEY_stock")
 logger = logging.getLogger("views")
 logger.setLevel(logging.DEBUG)
 file_handler = logging.FileHandler(os.path.join(LOGS_DIR, "views.log"), mode="a", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(funcName)s - %(message)s")
 logger.setLevel(logging.INFO)
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def greetings():
+def greetings() -> str:
     """Функция для приветствия в зависимости от времени запроса"""
-    logger.info(f"Начало работы '{greetings.__name__}'")
+    logger.info("Начало работы")
     try:
         hour_now = datetime.now()
         logger.info(f"Время запроса {hour_now}")
@@ -42,16 +43,17 @@ def greetings():
             greeting = "Добрый вечер"
         else:
             greeting = "Доброй ночи"
-        logger.info(f"Функция '{greetings.__name__}' вернула '{greeting}'")
+        logger.info(f"Функция вернула '{greeting}'")
         return greeting
     except Exception as e:
-        logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
-        print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
+        logger.error(f"Ошибка в функции - {Exception}: {e}.")
+        print(f"Ошибка в функции - {Exception}: {e}.")
+        return ""
 
 
-def get_card_spending(transactions: list[dict[str, Any]], date_str: str) -> list[dict[str, Any]]:
+def get_card_spending(transactions: DataFrame, date_str: str) -> list[dict[str, Any]]:
     """Получение информации трат по картам"""
-    logger.info(f"Начало работы '{greetings.__name__}'")
+    logger.info("Начало работы")
     try:
         end_date = datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S")
         start_date = end_date.replace(day=1, hour=0, minute=0, second=0)
@@ -72,17 +74,17 @@ def get_card_spending(transactions: list[dict[str, Any]], date_str: str) -> list
                     "cashback": math.floor(abs(i["Сумма платежа"]) / 100),
                 }
             )
-        logger.info(f"Функция '{greetings.__name__}' успешно выполнила обработку.")
+        logger.info("Функция успешно выполнила обработку.")
         return result_list
     except Exception as e:
-        logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
-        print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
+        logger.error(f"Ошибка в функции - {Exception}: {e}.")
+        print(f"Ошибка в функции - {Exception}: {e}.")
         return []
 
 
-def top_transactions_as_period(transactions, date_str):
+def top_transactions_as_period(transactions: DataFrame, date_str: str) -> List[Dict[str, Any]]:
     """Функция возвращает топ 5 транзакций по сумме платежа"""
-    logger.info(f"Начало работы '{greetings.__name__}'")
+    logger.info("Начало работы")
     try:
         end_date = datetime.strptime(date_str, "%d.%m.%Y %H:%M:%S")
         start_date = end_date.replace(day=1, hour=0, minute=0, second=0)
@@ -101,17 +103,17 @@ def top_transactions_as_period(transactions, date_str):
                     "description": category["Описание"],
                 }
             )
-        logger.info(f"Функция '{greetings.__name__}' успешно выполнила обработку.")
+        logger.info("Функция успешно выполнила обработку.")
         return result_list
     except Exception as e:
-        logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
-        print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
+        logger.error(f"Ошибка в функции - {Exception}: {e}.")
+        print(f"Ошибка в функции - {Exception}: {e}.")
         return []
 
 
-def get_users_curses():
+def get_users_curses() -> List[Dict[str, Any]]:
     """Функция возвращает JSON ответ с данными о валютах и акциях за указанный период"""
-    logger.info(f"Начало работы '{greetings.__name__}' - {datetime.now()}")
+    logger.info(f"Начало работы - {datetime.now()}")
     try:
         date = datetime.now()
         app_id = API_KEY_curs
@@ -136,19 +138,19 @@ def get_users_curses():
                     "rate": round(currency_in_rubles, 2),
                 }
             )
-        logger.info(f"Функция '{greetings.__name__}' успешно выполнила обработку.")
+        logger.info("Функция успешно выполнила обработку.")
         return filtered_list
     except Exception as e:
-        logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
-        print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
+        logger.error(f"Ошибка в функции - {Exception}: {e}.")
+        print(f"Ошибка в функции - {Exception}: {e}.")
         return []
 
 
-def get_stock_prices():
+def get_stock_prices() -> List[Dict[str, Any]]:
     """
     Возвращает цены на акции за указанный период.
     """
-    logger.info(f"Начало работы '{greetings.__name__}' - {datetime.now()}")
+    logger.info("Начало работы")
     try:
         user_setting = load_user_setting()
         user_stocks = user_setting.get("user_stocks", [])
@@ -157,7 +159,6 @@ def get_stock_prices():
             ticker = stock
             headers = {"Content-Type": "application/json", "Authorization": f"Token {API_KEY_stock}"}
             requestResponse = requests.get(f"https://api.tiingo.com/tiingo/daily/{ticker}/prices", headers=headers)
-            print(requestResponse.json())
             logger.info(f"Код ответа: {requestResponse}")
             stock_list.append(
                 {stock: {k: v for k, v in item.items() if k == "open"} for item in requestResponse.json()}
@@ -166,11 +167,11 @@ def get_stock_prices():
         for stock in stock_list:
             for key, value in stock.items():
                 result.append({"stock": key, "price": value["open"]})
-        logger.info(f"Функция '{greetings.__name__}' успешно выполнила обработку.")
+        logger.info("Функция успешно выполнила обработку.")
         return result
     except Exception as e:
-        logger.error(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
-        print(f"Ошибка в функции '{greetings.__name__}' - {Exception}: {e}.")
+        logger.error(f"Ошибка в функции - {Exception}: {e}.")
+        print(f"Ошибка в функции - {Exception}: {e}.")
         return []
 
 

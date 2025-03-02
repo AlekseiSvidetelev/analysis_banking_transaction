@@ -3202,3 +3202,281 @@ sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {
 test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
   
   - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x000001CC8652E270>}
+sum_arg: time execution: 0.000003. Result: 3
+sum_arg: time execution: 0.000004. Result: 9
+sum_arg: time execution: 0.000004. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x000002362C6B2270>}
+sum_arg: time execution: 0.000002. Result: 3
+sum_arg: time execution: 0.000002. Result: 9
+sum_arg: time execution: 0.000002. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x00000163AA9052B0>}
+sum_arg: time execution: 0.000002. Result: 3
+sum_arg: time execution: 0.000001. Result: 9
+sum_arg: time execution: 0.000001. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x00000277BDC752B0>}
+sum_arg: time execution: 0.000006. Result: 3
+sum_arg: time execution: 0.000004. Result: 9
+sum_arg: time execution: 0.000003. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x0000021B1F50C050>}
+sum_arg: time execution: 0.000003. Result: 3
+sum_arg: time execution: 0.000002. Result: 9
+sum_arg: time execution: 0.000002. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x000001BD4644C050>}
+get_filtered_transaction: time execution: 0.000933. Result: None
+get_filtered_transaction: time execution: 0.000657. Result: None
+get_filtered_transaction: time execution: 0.000524. Result: None
+get_filtered_transaction: time execution: 0.001231. Result: []
+get_filtered_transaction: time execution: 0.001451. Result: [
+    {
+        "Дата операции": "31.12.2021 16:44:00",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -160.89
+    },
+    {
+        "Дата операции": "31.12.2021 16:42:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -64.0
+    },
+    {
+        "Дата операции": "31.12.2021 16:39:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -118.12
+    },
+    {
+        "Дата операции": "31.12.2021 15:44:39",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -78.05
+    }
+]
+sum_arg: time execution: 0.000003. Result: 3
+sum_arg: time execution: 0.000002. Result: 9
+sum_arg: time execution: 0.000002. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x00000204B1544050>}
+get_filtered_transaction: time execution: 0.001887. Result: [
+    {
+        "Дата операции": "31.12.2021 16:44:00",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -160.89
+    },
+    {
+        "Дата операции": "31.12.2021 16:42:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -64.0
+    },
+    {
+        "Дата операции": "31.12.2021 16:39:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -118.12
+    },
+    {
+        "Дата операции": "31.12.2021 15:44:39",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -78.05
+    }
+]
+get_filtered_transaction: time execution: 0.001236. Result: []
+get_filtered_transaction: time execution: 0.001099. Result: None
+sum_arg: time execution: 0.000004. Result: 3
+sum_arg: time execution: 0.000002. Result: 9
+sum_arg: time execution: 0.000001. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x00000281A01F4050>}
+get_filtered_transaction: time execution: 0.001688. Result: [
+    {
+        "Дата операции": "31.12.2021 16:44:00",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -160.89
+    },
+    {
+        "Дата операции": "31.12.2021 16:42:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -64.0
+    },
+    {
+        "Дата операции": "31.12.2021 16:39:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -118.12
+    },
+    {
+        "Дата операции": "31.12.2021 15:44:39",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -78.05
+    }
+]
+get_filtered_transaction: time execution: 0.000852. Result: []
+get_filtered_transaction: time execution: 0.000560. Result: None
+sum_arg: time execution: 0.000003. Result: 3
+sum_arg: time execution: 0.000002. Result: 9
+sum_arg: time execution: 0.000001. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x000001977546C050>}
+get_filtered_transaction: time execution: 0.001255. Result: [
+    {
+        "Дата операции": "31.12.2021 16:44:00",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -160.89
+    },
+    {
+        "Дата операции": "31.12.2021 16:42:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -64.0
+    },
+    {
+        "Дата операции": "31.12.2021 16:39:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -118.12
+    },
+    {
+        "Дата операции": "31.12.2021 15:44:39",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -78.05
+    }
+]
+get_filtered_transaction: time execution: 0.000633. Result: []
+get_filtered_transaction: time execution: 0.000372. Result: None
+sum_arg: time execution: 0.000001. Result: 3
+sum_arg: time execution: 0.000001. Result: 9
+sum_arg: time execution: 0.000000. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x00000187619852B0>}
+get_filtered_transaction: time execution: 0.000624. Result: [
+    {
+        "Дата операции": "31.12.2021 16:44:00",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -160.89
+    },
+    {
+        "Дата операции": "31.12.2021 16:42:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -64.0
+    },
+    {
+        "Дата операции": "31.12.2021 16:39:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -118.12
+    },
+    {
+        "Дата операции": "31.12.2021 15:44:39",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -78.05
+    }
+]
+get_filtered_transaction: time execution: 0.000355. Result: []
+get_filtered_transaction: time execution: 0.000224. Result: None
+sum_arg: time execution: 0.000001. Result: 3
+sum_arg: time execution: 0.000001. Result: 9
+sum_arg: time execution: 0.000000. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x0000017B288952B0>}
+get_filtered_transaction: time execution: 0.001045. Result: [
+    {
+        "Дата операции": "31.12.2021 16:44:00",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -160.89
+    },
+    {
+        "Дата операции": "31.12.2021 16:42:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -64.0
+    },
+    {
+        "Дата операции": "31.12.2021 16:39:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -118.12
+    },
+    {
+        "Дата операции": "31.12.2021 15:44:39",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -78.05
+    }
+]
+get_filtered_transaction: time execution: 0.000419. Result: []
+get_filtered_transaction: time execution: 0.000265. Result: None
+sum_arg: time execution: 0.000001. Result: 3
+sum_arg: time execution: 0.000000. Result: 9
+sum_arg: time execution: 0.000001. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x00000199A3675D30>}
+get_filtered_transaction: time execution: 0.000707. Result: [
+    {
+        "Дата операции": "31.12.2021 16:44:00",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -160.89
+    },
+    {
+        "Дата операции": "31.12.2021 16:42:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -64.0
+    },
+    {
+        "Дата операции": "31.12.2021 16:39:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -118.12
+    },
+    {
+        "Дата операции": "31.12.2021 15:44:39",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -78.05
+    }
+]
+get_filtered_transaction: time execution: 0.000660. Result: []
+get_filtered_transaction: time execution: 0.000244. Result: 
+sum_arg: time execution: 0.000001. Result: 3
+sum_arg: time execution: 0.000001. Result: 9
+sum_arg: time execution: 0.000000. Result: 15
+sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}
+test_exception: error - assert '' == 'sum_arg: err... (1, 1), {}\n'
+  
+  - sum_arg: error - 'x' не должен быть равен 'y'. Input: (1, 1), {}. Input: (), {'capsys': <_pytest.capture.CaptureFixture object at 0x000002A20FB452B0>}
+get_filtered_transaction: time execution: 0.000637. Result: [
+    {
+        "Дата операции": "31.12.2021 16:44:00",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -160.89
+    },
+    {
+        "Дата операции": "31.12.2021 16:42:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -64.0
+    },
+    {
+        "Дата операции": "31.12.2021 16:39:04",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -118.12
+    },
+    {
+        "Дата операции": "31.12.2021 15:44:39",
+        "Категория": "Супермаркеты",
+        "Сумма операции": -78.05
+    }
+]
+get_filtered_transaction: time execution: 0.000376. Result: []
+get_filtered_transaction: time execution: 0.000229. Result: 
